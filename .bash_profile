@@ -25,4 +25,5 @@ export AWS_DEFAULT_REGION=us-east-1
 
 # Install Terraform and create links
 alias tf='tf12'
-
+export EDITOR=vim
+alias vi=vim
