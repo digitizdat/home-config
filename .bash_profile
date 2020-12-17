@@ -1,6 +1,6 @@
 set -o vi
 
-export PS1='\u@\h:\W- '
+export PS1='\w- '
 
 alias 1='fg %1'
 alias 2='fg %2'
@@ -17,10 +17,10 @@ export HISTFILESIZE=99999999
 export HOMEBREW_NO_ANALYTICS=1
 
 # Install Anaconda
-conda activate dev37
+conda activate dev38
 
 # Install awscli
-complete -C '/Users/s0046656/anaconda3/envs/dev37/bin/aws_completer' aws
+complete -C '/Users/username/anaconda3/envs/dev38/bin/aws_completer' aws
 export AWS_DEFAULT_REGION=us-east-1
 
 # Install Terraform and create links
