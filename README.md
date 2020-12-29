@@ -39,7 +39,7 @@
 
 ### Install default Conda environment
 
-    conda create -n dev38 python=3.8 pandas scipy numpy dask requests boto3 awscli matplotlib notebook
+    conda create -n dev38 python=3.8 pandas scipy numpy dask requests boto3 awscli matplotlib notebook flake8 black isort
 
 ### Install Terraform
 
