@@ -27,3 +27,9 @@ export AWS_DEFAULT_REGION=us-east-1
 alias tf='tf12'
 export EDITOR=vim
 alias vi=vim
+
+width=$(tput cols)
+[ -r ~/.todo ] && cat ~/.todo |while read line; do
+    figlet -w ${width} "TODO: ${line}"
+done
+
