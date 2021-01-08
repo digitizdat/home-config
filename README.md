@@ -31,6 +31,8 @@
 
     cat ./.bash_profile >> ~/.bash_profile
     . ~/.bash_profile
+    touch ~/.bash_sessions_disable
+    rm -rf ~/.bash_sessions
 
 ### Install Conda Forge
 
