@@ -21,7 +21,7 @@ conda activate dev38
 
 # Install awscli
 complete -C '/Users/username/anaconda3/envs/dev38/bin/aws_completer' aws
-export AWS_DEFAULT_REGION=us-east-1
+export AWS_DEFAULT_REGION=us-east-2
 
 # Install Terraform and create links
 alias tf='tf12'
