@@ -6,7 +6,7 @@
 ### Install Brew
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install git grip wget
+    brew install git grip wget figlet
 
 ### Install Vim Pathogen
 
