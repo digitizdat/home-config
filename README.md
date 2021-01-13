@@ -6,6 +6,7 @@
 ### Install Brew
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew install git grip wget
 
 ### Install Vim Pathogen
 
@@ -15,7 +16,6 @@
 
     cd ~/.vim/bundle/
     git clone https://github.com/JamshedVesuna/vim-markdown-preview
-    brew install grip
     
 ### Install .vimrc
 
@@ -23,7 +23,6 @@
 
 ### Install Anaconda
 
-    brew install wget
     wget https://repo.anaconda.com/archive/Anaconda3-2020.11-MacOSX-x86_64.sh
     bash Anaconda3-2020.11-MacOSX-x86_64.sh
 
