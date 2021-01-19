@@ -27,6 +27,7 @@ export AWS_DEFAULT_REGION=us-east-2
 alias tf='tf12'
 export EDITOR=vim
 alias vi=vim
+alias bc='bc -l ~/.bclib'
 
 width=$(tput cols)
 [ -r ~/.todo ] && cat ~/.todo |while read line; do

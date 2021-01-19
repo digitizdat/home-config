@@ -1,0 +1,38 @@
+#
+# bclib
+#
+# This is just a simple library of functions for bc since it comes with so few to begin with...
+#
+# Martin McGreal 12/4/2011
+#
+
+
+pi=4*a(1)
+
+define asin(theta) {
+    return a(theta/(sqrt(1-(theta^2))));
+}
+
+define torad(degrees) {
+    return degrees*(pi/180);
+}
+
+define todeg(radians) {
+    return radians*(180/(4*a(1)));
+}
+
+
+# Law of Cosines for opposite segment
+# You provide the lengths of two adjacent lines and the angle between them, this
+# function returns the length of the line opposite the angle.
+# C must be provided in degrees.
+define lcosod(a,b,c) {
+    return lcosor(a,b,torad(c));
+}
+
+# Same as above except C must be provided in radians.
+define lcosor(a,b,c) {
+    csq = (a^2) + (b^2) - 2*a*b*c(c);
+    return sqrt(csq);
+}
+

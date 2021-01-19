@@ -6,7 +6,7 @@
 ### Install Brew
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install git grip wget figlet jq
+    brew install git grip wget figlet jq tfenv
 
 ### Install Vim Pathogen
 
@@ -20,6 +20,10 @@
 ### Install .vimrc
 
     cp ./.vimrc ~/
+
+### Install bclib
+
+    cp ./.bclib ~/
 
 ### Install Anaconda
 
