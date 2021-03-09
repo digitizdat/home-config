@@ -1,12 +1,60 @@
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/mmmcgrea/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/mmmcgrea/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 set -o vi
 
-export PS1='\w- '
+# This prompt function keeps the prompt trimmed to the cwd, but maintains the
+# information of you whether you're in a directory under your home dir or not.
+ps1_prompt() {
+  typeset -i _p_tilde=0
+  typeset -i _p_longpath=0
+  typeset _p_oifs
+  typeset _p_dirs
+  typeset _p_path=''
 
+  # Is $HOME part of our path?
+  [[ "${PWD:0:${#HOME}}" == "${HOME}" ]] && _p_tilde=1 || _p_tilde=0
+
+  # Are we more than one level deep, not including $HOME?
+  _p_oifs=${IFS}  # Save the old field separator to restore later
+  IFS=$'/'
+  _p_dirs=(${PWD#${HOME}})
+  ((${#_p_dirs[@]} > 2)) && _p_longpath=1 || p_longpath=0
+  IFS=${_p_oifs}
+
+  # Five possible cases
+  if [[ ${HOME} == ${PWD} ]]; then echo -n "~- "
+  elif ((_p_tilde && _p_longpath)); then echo -n "~/../${PWD##*/}- "
+  elif ((_p_tilde && _p_longpath == 0)); then echo -n "~${PWD#${HOME}}- "
+  elif ((_p_tilde == 0 && _p_longpath)); then echo -n "../${PWD##*/}- "
+  elif ((_p_tilde == 0 && _p_longpath == 0)); then echo -n "${PWD}- "
+  fi
+}
+
+export PS1=
+export EDITOR=vim
+
+alias vi=vim
+alias tf='terraform'
 alias 1='fg %1'
 alias 2='fg %2'
 alias 3='fg %1'
 alias 4='fg %4'
 alias ipy='ipython --no-confirm-exit'
+alias bc='bc -l ~/.bclib'
 
 # Disable those pesky sessions
 #touch ~/.bash_sessions_disable
@@ -20,17 +68,12 @@ export HOMEBREW_NO_ANALYTICS=1
 conda activate dev38
 
 # Install awscli
-complete -C '/Users/username/anaconda3/envs/dev38/bin/aws_completer' aws
+complete -C '/Users/mmmcgrea/anaconda3/envs/dev38/bin/aws_completer' aws
 export AWS_DEFAULT_REGION=us-east-2
-
-# Install Terraform and create links
-alias tf='tf12'
-export EDITOR=vim
-alias vi=vim
-alias bc='bc -l ~/.bclib'
 
 width=$(tput cols)
 [ -r ~/.todo ] && cat ~/.todo |while read line; do
     figlet -w ${width} "TODO: ${line}"
 done
 
+export PS1="${PS1}\$(ps1_prompt)"
