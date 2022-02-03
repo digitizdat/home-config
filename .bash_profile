@@ -76,8 +76,6 @@ width=$(tput cols)
     figlet -w ${width} "TODO: ${line}"
 done
 
-export PS1="${PS1}\$(ps1_prompt)"
-
 function bell
 {
     usage="usage: bell [seconds]"
@@ -96,4 +94,16 @@ function bell
     (sleep ${seconds} && echo -e "\a" > /dev/${term} &)
 }
 
+aws_profile() {
+    profile_name=""
+    if [[ -n "$AWS_DEFAULT_PROFILE" ]]; then
+        profile_name="$AWS_DEFAULT_PROFILE"
+    elif [[ -n "$AWS_PROFILE" ]]; then
+        profile_name="$AWS_PROFILE"
+    fi
+    if [[ -n "$profile_name" ]]; then
+        echo -n " $profile_name "
+    fi
+}
+export PS1="\[\033[30;48;5;208m\]\$(aws_profile)\[\033[0m\]${PS1}\$(ps1_prompt)"
 
