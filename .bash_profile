@@ -78,7 +78,7 @@ done
 
 function bell
 {
-    usage="usage: bell [seconds]"
+    usage="usage: bell [seconds] [message]"
 
     # Test for empty $1
     [[ "$1" == "" ]] && seconds=0
@@ -91,7 +91,11 @@ function bell
 
     term=$(ps -p $$ -o tty=)
     [[ "$1" != "" ]] && seconds=$1 || seconds=0
-    (sleep ${seconds} && echo -e "\a" > /dev/${term} &)
+    (
+      sleep ${seconds} &&                            \
+      figlet -w ${_t_width} "$2" >> /dev/${term} &&  \
+      echo -e "\a" > /dev/${term} &
+    )
 }
 
 aws_profile() {
