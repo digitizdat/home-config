@@ -77,3 +77,23 @@ width=$(tput cols)
 done
 
 export PS1="${PS1}\$(ps1_prompt)"
+
+function bell
+{
+    usage="usage: bell [seconds]"
+
+    # Test for empty $1
+    [[ "$1" == "" ]] && seconds=0
+
+    # Test for integer argument
+    if [[ ! "$1" =~ ^[0-9]+$ && "$1" != "" ]]; then
+      echo ${usage}
+      return 1
+    fi
+
+    term=$(ps -p $$ -o tty=)
+    [[ "$1" != "" ]] && seconds=$1 || seconds=0
+    (sleep ${seconds} && echo -e "\a" > /dev/${term} &)
+}
+
+
