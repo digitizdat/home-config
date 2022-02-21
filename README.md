@@ -51,3 +51,6 @@
 
 ### Install Terraform
 
+### Install helpful scripts
+    mkdir ~/bin
+    cp ping.sh ~/bin
