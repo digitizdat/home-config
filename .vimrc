@@ -13,6 +13,7 @@ set ruler  " Put the current line,col values in the status bar
 set tw=79
 set expandtab
 set hlsearch
+set re=0
 let vim_markdown_preview_browser='Firefox'
 let vim_markdown_preview_github=1
 
