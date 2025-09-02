@@ -1,18 +1,4 @@
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/mmmcgrea/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/mmmcgrea/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
 set -o vi
 
@@ -111,3 +97,34 @@ aws_profile() {
 }
 export PS1="\[\033[30;48;5;208m\]\$(aws_profile)\[\033[0m\]${PS1}\$(ps1_prompt)"
 
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/mmmcgrea/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/mmmcgrea/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/mmmcgrea/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+alias isort='ruff check --select I --fix'
+
+# Bat also works well for this nowadays...
+alias pycat='pygmentize -O paraiso-dark'
+function pcat
+{
+    pycat $1 |nl -ba
+}
+
+# Python checking/formatting
+function bark
+{
+    ruff check --select I --fix $1
+    ruff format $1
+}
